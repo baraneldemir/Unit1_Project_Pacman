@@ -10,8 +10,8 @@
   .play {
     position: absolute;
     margin-top: 90vh;
-    margin-left: 90vh;
-    font-size: 10px;
+    margin-left: 80vh;
+    font-size: 15px;
     border: 0.1vmin solid gray;
     border-radius: 4vmin ;
     cursor: pointer;

@@ -1,11 +1,6 @@
 function init() {
 //CONSTS
 const grid = document.querySelector(".grid")
-const audioAll = {
-    background: "https://cdn.freesound.org/previews/521/521478_3562198-lq.mp3",
-    death: "https://cdn.freesound.org/previews/266/266163_4284968-lq.mp3",
-}
-
 //BOARD Config
 // const playPauseButton = document.querySelector(".play")
 const width = 19
@@ -16,32 +11,7 @@ let letsMove = []
 //CHARACTER CONFIG
 const pacmanStartingPosition = 237
 let pacmanCurrentPosition = pacmanStartingPosition
-// let count = 0
 // ! FUNCTIONS
-// function playPauseMusic(){
-//     let audio = new Audio("https://cdn.freesound.org/previews/521/521478_3562198-lq.mp3")
-//     if(count===0){
-//         count = 1
-//         audio.play()
-//         playPauseButton.innerHTML = "Pause Music"
-//     }else{
-//         count=0
-//         audio.stop()
-//         playPauseButton.innerHTML = "Play Music"
-
-//     }
-    
-// }
-function playDeath(){
-    let deathAudio = new Audio("https://cdn.freesound.org/previews/266/266163_4284968-lq.mp3")
-    deathAudio.play()
-}
-function playEat(){
-    let eatAudio = new Audio("https://cdn.freesound.org/previews/341/341695_5858296-lq.mp3")
-    eatAudio.play()
-    eatAudio.volume = 0.2
-}
-
 function game(){
     createGrid()
     createWalls()
@@ -50,9 +20,18 @@ function game(){
     ghostsStartMoving()
     healthBar()
     createCherry()
-}   
+}  
+function playDeath(){
+    let deathAudio = new Audio("https://cdn.freesound.org/previews/266/266163_4284968-lq.mp3")
+    deathAudio.play()
+    deathAudio.volume = 0.3
+}
+function playEat(){
+    let eatAudio = new Audio("https://cdn.freesound.org/previews/341/341695_5858296-lq.mp3")
+    eatAudio.play()
+    eatAudio.volume = 0.07
+}
 //MAP
-//CREATE CELLS
 function createGrid(){
     board = [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -81,16 +60,10 @@ function createGrid(){
     ]
     for (let i = 0; i < cellCount; i++ ){
     const cell = document.createElement("div")
-    //add Index to div element
-    // cell.innerText = i   //no need to show it so cell.id = i but data attributes better
-    //add index as an attribute
-    cell.dataset.index = i  //index could be anything since we use dataset   could also do cell.setattribute('data-index, i')
-    //add the height and width to each grid cell (div)
+    cell.dataset.index = i  
     cell.style.height = `${100 / height}%`
     cell.style.width = `${100 / width}%`
-    //add cell to grid
     grid.appendChild(cell)
-    //add newly created cell to array
     cells.push(cell)
     }
 }
@@ -113,28 +86,23 @@ function healthBar() {
     if(cell===9 ){
         cells[idx].classList.add("pacman")
     }
-})   
+    })   
 }
 function createCherry() {
     board.forEach((cell, idx) => {
     if(cell===8 ){
         cells[idx].classList.add("cherry")
     }
-})   
+    })   
 }
 //handlemovement
 function pacmanHandleMovement(event){
-    // console.log(event.keyCode)
     const left = "ArrowLeft" 
     const up = "ArrowUp"
     const right = "ArrowRight"
     const down = "ArrowDown"
     removePacman()
-    // Remove pacman from previous position before updating current position to new cell
-//    console.log(pacmanCurrentPosition, width, pacmanCurrentPosition % width)
-    //feed function inside the controls
-    if(event.key === up && pacmanCurrentPosition >= width){ // % height also works
-        // document.querySelector(".ghost").style.transform = "rotate(90deg)"
+    if(event.key === up && pacmanCurrentPosition >= width){ 
         if (!cells[(pacmanCurrentPosition - width)].classList.contains("pixelWall") ){
             pacmanCurrentPosition -= width
             if (cells[pacmanCurrentPosition].classList.contains("food") ){
@@ -145,7 +113,6 @@ function pacmanHandleMovement(event){
             }
     }else if(event.key === down && pacmanCurrentPosition + width <= cellCount -1){
         if (!cells[(pacmanCurrentPosition + width)].classList.contains("pixelWall") ){
-            
             pacmanCurrentPosition += width
             if (cells[pacmanCurrentPosition].classList.contains("food") ){
                 cells[pacmanCurrentPosition].classList.remove("food")
@@ -178,6 +145,7 @@ function pacmanHandleMovement(event){
     addPacman(pacmanCurrentPosition)
     eatCherry()
     eatGhost()
+    checkwin()
 }
     // ADD pacman CLASS
     function addPacman(pacmanPosition){
@@ -283,7 +251,6 @@ function pacmanDie(position) {
         playDeath()
     }
 }
-
 function updateHealth(){
     if (cells[420].classList.contains("pacman")){
         cells[420].classList.remove("pacman") 
@@ -324,8 +291,12 @@ function reloadGame() {
     endScreen.style.visibility="hidden"
     grid.innerHTML = ''
     init()
-    
     // window.location.reload()
+}
+function checkwin(){
+    if(score === 155){
+    displayGameOver()
+    }
 }
 function displayGameOver(){
     highscoreUpdate()
@@ -337,7 +308,6 @@ function displayGameOver(){
 // ! EVENTS
 document.addEventListener("keydown", pacmanHandleMovement)
 document.querySelector(".again").addEventListener("click", reloadGame)
-
 // ! PAGE LOAD
 game()
 }
