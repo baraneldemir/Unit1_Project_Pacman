@@ -1,7 +1,6 @@
 function init() {
 //CONSTS
 const grid = document.querySelector(".grid")
-const endScreen = document.querySelector(".endScreen")
 //BOARD Config
 const width = 19
 const height = 23
@@ -51,7 +50,6 @@ function createGrid(){
     ]
     for (let i = 0; i < cellCount; i++ ){
     const cell = document.createElement("div")
-
     //add Index to div element
     // cell.innerText = i   //no need to show it so cell.id = i but data attributes better
     //add index as an attribute
@@ -273,17 +271,28 @@ function turnGhostsScared() {
     turnGhostsBlue()
     setTimeout(ghostsStartMoving, 4000) 
 }
+function leaderBoardUpdate(){
+    const leaderBoard = document.querySelector(".leaderBoard")
+    const newHighscore = document.createElement('li')
+    newHighscore.innerHTML = document.querySelector(".score").innerHTML 
+    leaderBoard.appendChild(newHighscore)
+}
 function highscoreUpdate(){
     const list = document.querySelector(".highscore")
     const newScore = document.createElement('li')
     newScore.innerHTML = document.querySelector(".score").innerHTML 
     list.appendChild(newScore)
+    leaderBoardUpdate()
 }
 function reloadGame() {
+    document.querySelector(".again").removeEventListener("click", reloadGame)
+    console.log("asadas")
     const endScreen = document.querySelector(".endScreen")
     endScreen.style.visibility="hidden"
     grid.innerHTML = ''
     init()
+    
+    // window.location.reload()
 }
 function displayGameOver(){
     highscoreUpdate()
