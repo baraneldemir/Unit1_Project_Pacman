@@ -1,7 +1,13 @@
 function init() {
 //CONSTS
 const grid = document.querySelector(".grid")
+const audioAll = {
+    background: "https://cdn.freesound.org/previews/521/521478_3562198-lq.mp3",
+    death: "https://cdn.freesound.org/previews/266/266163_4284968-lq.mp3",
+}
+
 //BOARD Config
+// const playPauseButton = document.querySelector(".play")
 const width = 19
 const height = 23
 const cellCount = width * height
@@ -10,7 +16,32 @@ let letsMove = []
 //CHARACTER CONFIG
 const pacmanStartingPosition = 237
 let pacmanCurrentPosition = pacmanStartingPosition
+// let count = 0
 // ! FUNCTIONS
+// function playPauseMusic(){
+//     let audio = new Audio("https://cdn.freesound.org/previews/521/521478_3562198-lq.mp3")
+//     if(count===0){
+//         count = 1
+//         audio.play()
+//         playPauseButton.innerHTML = "Pause Music"
+//     }else{
+//         count=0
+//         audio.stop()
+//         playPauseButton.innerHTML = "Play Music"
+
+//     }
+    
+// }
+function playDeath(){
+    let deathAudio = new Audio("https://cdn.freesound.org/previews/266/266163_4284968-lq.mp3")
+    deathAudio.play()
+}
+function playEat(){
+    let eatAudio = new Audio("https://cdn.freesound.org/previews/341/341695_5858296-lq.mp3")
+    eatAudio.play()
+    eatAudio.volume = 0.2
+}
+
 function game(){
     createGrid()
     createWalls()
@@ -44,7 +75,7 @@ function createGrid(){
         0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0,
         0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0,
         0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0,
-        0, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8, 0,
+        0, 8, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 8, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         9, 9, 9, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
     ]
@@ -241,13 +272,15 @@ function ghostsStartMoving(){
     let score = 0
     document.querySelector(".score").innerHTML = score
 function updateScore(){
+    playEat()
     score += 1
     document.querySelector(".score").innerHTML = score
-    return
+
 }
 function pacmanDie(position) {
     if (pacmanCurrentPosition === position){
         updateHealth()
+        playDeath()
     }
 }
 
@@ -269,7 +302,7 @@ function eatCherry() {
 function turnGhostsScared() {
     letsMove.forEach(move =>clearInterval(move)) 
     turnGhostsBlue()
-    setTimeout(ghostsStartMoving, 4000) 
+    setTimeout(ghostsStartMoving, 3000) 
 }
 function leaderBoardUpdate(){
     const leaderBoard = document.querySelector(".leaderBoard")
