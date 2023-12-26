@@ -40,6 +40,7 @@
     margin-left: 10px;
     
   }
+  
   .leaderBoard {
     
     margin-top: 30px;
@@ -62,7 +63,7 @@
   }
   .grid {
     align-items: center;
-    /* box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2); */
+    box-shadow: 0 0 15vh 0 rgba(3, 127, 182, 0.8);
     display: flex;
     flex-wrap: wrap;
     height: 100%;
@@ -173,7 +174,7 @@
     border-radius: 4vmin ;
     cursor: pointer;
     color: black;
-    margin-top: 4vmin;
+    margin-top: 50vh;
     font-family: 'Orbitron', sans-serif;
     padding: 2vmin
    }
@@ -184,7 +185,7 @@
    }
    .highscore {
     font-size: 20px;
-    background-color: darkgrey;
+    background-color: darkgray;
     text-align: center;
     font-family: 'Orbitron', sans-serif;
     border: 0.1vmin solid gray;
@@ -193,3 +194,102 @@
     padding: 2vmin;
 
    }
+
+/* CONTROLER */
+   .buttonContainer {
+    position: absolute;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 15px;
+    margin-top: 72vh;
+    margin-left: 12vh;
+  }
+  
+  .upButton, .downButton, .leftButton, .rightButton {
+    background-color: white;
+    border-color: rgb(44, 152, 58);
+    border-radius: 40%;
+    box-shadow: 0 0 20px 0 rgba(3, 127, 182, 0.8);
+    color: black;
+    padding: 40px;
+    font-size: 40px;
+    
+  }
+  
+  .bottomButtonRow {
+    display: flex;
+    column-gap: 15px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  .buttonContainer {
+    display: none;
+  }
+
+   /* BUTTONS FOR MOBILE */
+   
+   @media (max-width: 1250px) {
+    .buttonContainer {
+      display: flex;
+    }
+    .play{
+      display: none;
+    }
+    body {
+      height: 90vh;
+      background-color: aqua;
+    }
+    .card{
+      margin-left: 15vh;
+      margin-top: 3vh;
+
+    }
+    .leaderBoard {
+    
+      margin-top: 30px;
+      padding: 5%;
+      margin-left: 2vh;
+      display: none;
+
+    }
+    .header{
+      font-size: 5vh;
+      text-align: center;
+      margin-top: -3vh;
+      
+    }
+    .score{
+      font-size: 2vh;
+    }
+    .grid-wrapper{
+      height: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      margin-left: 0%;
+    }
+    .grid{
+      align-items: center;
+    /* box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2); */
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    justify-content: center;
+    height: 1100px;
+    width: 900px;
+    margin-top: 77%;
+    }
+    .disable-dbl-tap-zoom {
+      touch-action: manipulation;
+    }
+  }
+
+
+
+    

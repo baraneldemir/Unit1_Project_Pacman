@@ -1,4 +1,5 @@
 function init() {
+   
 //CONSTS
 const grid = document.querySelector(".grid")
 //BOARD Config
@@ -21,16 +22,7 @@ function game(){
     healthBar()
     createCherry()
 }  
-function playDeath(){
-    let deathAudio = new Audio("https://cdn.freesound.org/previews/266/266163_4284968-lq.mp3")
-    deathAudio.play()
-    deathAudio.volume = 0.3
-}
-function playEat(){
-    let eatAudio = new Audio("https://cdn.freesound.org/previews/341/341695_5858296-lq.mp3")
-    eatAudio.play()
-    eatAudio.volume = 0.07
-}
+
 //MAP
 function createGrid(){
     board = [
@@ -95,53 +87,159 @@ function createCherry() {
     }
     })   
 }
+ /*---------- Key Controls ----------*/
+ 
+ const upButton = document.querySelector(".upButton")
+ const downButton = document.querySelector(".downButton")
+ const leftButton = document.querySelector(".leftButton")
+ const rightButton = document.querySelector(".rightButton")
+
+ upButton.addEventListener("click", () => pacmanHandleMovement("up"))
+ downButton.addEventListener("click", () => pacmanHandleMovement("down"))
+ leftButton.addEventListener("click", () => pacmanHandleMovement("left"))
+ rightButton.addEventListener("click", () => pacmanHandleMovement("right"))
+
+
+
 //handlemovement
+
 function pacmanHandleMovement(event){
-    const left = "ArrowLeft" 
-    const up = "ArrowUp"
-    const right = "ArrowRight"
-    const down = "ArrowDown"
     removePacman()
-    if(event.key === up && pacmanCurrentPosition >= width){ 
-        if (!cells[(pacmanCurrentPosition - width)].classList.contains("pixelWall") ){
-            pacmanCurrentPosition -= width
-            if (cells[pacmanCurrentPosition].classList.contains("food") ){
-                cells[pacmanCurrentPosition].classList.remove("food")
-                updateScore()
-            }
-            //eat food statement
-            }
-    }else if(event.key === down && pacmanCurrentPosition + width <= cellCount -1){
-        if (!cells[(pacmanCurrentPosition + width)].classList.contains("pixelWall") ){
-            pacmanCurrentPosition += width
-            if (cells[pacmanCurrentPosition].classList.contains("food") ){
-                cells[pacmanCurrentPosition].classList.remove("food")
-                updateScore()
-            }
+/////////////////////////////
+let key;
+
+    if (typeof event === 'string') {
+        // If the event is a string, it means it came from the button click
+        // Assign the corresponding keyCode based on the button
+        switch (event) {
+            case "up":
+                key = 38
+                break
+            case "down":
+                key = 40
+                break
+            case "left":
+                key = 37
+                break
+            case "right":
+                key = 39
+                break
+            default:
+                console.log("INVALID BUTTON")
+                return
         }
-    }else if(event.key === right){ //9 also works  // 
-        if(pacmanCurrentPosition === 208){
-        pacmanCurrentPosition = 190
-       }
-        if (!cells[(pacmanCurrentPosition + 1)].classList.contains("pixelWall") ){
-            pacmanCurrentPosition++
-            if (cells[pacmanCurrentPosition].classList.contains("food") ){
-                cells[pacmanCurrentPosition].classList.remove("food")
-                updateScore()
-            }
-        }
-    }else if(event.key === left){ //&& 
-        if(pacmanCurrentPosition === 190){
-            pacmanCurrentPosition =  208
-        }
-        if (!cells[(pacmanCurrentPosition - 1)].classList.contains("pixelWall") ){
-            pacmanCurrentPosition--
-            if (cells[pacmanCurrentPosition].classList.contains("food") ){
-                cells[pacmanCurrentPosition].classList.remove("food")
-                updateScore()
-            }
-        }
+        
+    } else {
+        // If it's a keyboard event, get the keyCode
+        key = event.keyCode
     }
+
+    const up = 38
+    const down = 40
+    const left = 37
+    const right = 39
+    const space = 32
+
+    switch (key) {
+        case up :
+             
+                if (!cells[(pacmanCurrentPosition - width)].classList.contains("pixelWall") ){
+                    pacmanCurrentPosition -= width
+                    if (cells[pacmanCurrentPosition].classList.contains("food") ){
+                        cells[pacmanCurrentPosition].classList.remove("food")
+                        updateScore()
+                    }
+                    //eat food statement
+                    }
+                
+            break
+        case down:
+            if (!cells[(pacmanCurrentPosition + width)].classList.contains("pixelWall") ){
+                pacmanCurrentPosition += width
+                if (cells[pacmanCurrentPosition].classList.contains("food") ){
+                    cells[pacmanCurrentPosition].classList.remove("food")
+                    updateScore()
+                }
+            }
+            break
+        case left:
+            if(pacmanCurrentPosition === 190){
+                pacmanCurrentPosition =  208
+            }
+            if (!cells[(pacmanCurrentPosition - 1)].classList.contains("pixelWall") ){
+                pacmanCurrentPosition--
+                if (cells[pacmanCurrentPosition].classList.contains("food") ){
+                    cells[pacmanCurrentPosition].classList.remove("food")
+                    updateScore()
+                }
+            }
+            break
+        case right:
+            if(pacmanCurrentPosition === 208){
+                pacmanCurrentPosition = 190
+               }
+                if (!cells[(pacmanCurrentPosition + 1)].classList.contains("pixelWall") ){
+                    pacmanCurrentPosition++
+                    if (cells[pacmanCurrentPosition].classList.contains("food") ){
+                        cells[pacmanCurrentPosition].classList.remove("food")
+                        updateScore()
+                    }
+                }
+            break
+         case space:
+            if (event.code === "Space" && !gameOver) {
+            togglePause()
+            } else {
+            pacmanHandleMovement(event)
+            }
+            break
+            default:
+            console.log("INVALID KEY")
+        }        
+    /////////////////////
+   
+    // if (typeof event === 'string') 
+    // if(event.key === up || upButton.ontouchstart && pacmanCurrentPosition >= width){ 
+    //     if (!cells[(pacmanCurrentPosition - width)].classList.contains("pixelWall") ){
+    //         pacmanCurrentPosition -= width
+    //         if (cells[pacmanCurrentPosition].classList.contains("food") ){
+    //             cells[pacmanCurrentPosition].classList.remove("food")
+    //             updateScore()
+    //             console.log("asdasd")
+    //         }
+    //         //eat food statement
+    //         }
+    // }else if(event.key === down || downButton.ontouchstart && pacmanCurrentPosition + width <= cellCount -1){
+    //     if (!cells[(pacmanCurrentPosition + width)].classList.contains("pixelWall") ){
+    //         pacmanCurrentPosition += width
+    //         if (cells[pacmanCurrentPosition].classList.contains("food") ){
+    //             cells[pacmanCurrentPosition].classList.remove("food")
+    //             updateScore()
+    //         }
+    //     }
+    // }else if(event.key === right || rightButton.ontouchstart){ //9 also works  // 
+    //     if(pacmanCurrentPosition === 208){
+    //     pacmanCurrentPosition = 190
+    //    }
+    //     if (!cells[(pacmanCurrentPosition + 1)].classList.contains("pixelWall") ){
+    //         pacmanCurrentPosition++
+    //         if (cells[pacmanCurrentPosition].classList.contains("food") ){
+    //             cells[pacmanCurrentPosition].classList.remove("food")
+    //             updateScore()
+    //         }
+    //     }
+    // }else if(event.key === left || leftButton.ontouchstart){ //&& 
+    //     if(pacmanCurrentPosition === 190){
+    //         pacmanCurrentPosition =  208
+    //     }
+    //     if (!cells[(pacmanCurrentPosition - 1)].classList.contains("pixelWall") ){
+    //         pacmanCurrentPosition--
+    //         if (cells[pacmanCurrentPosition].classList.contains("food") ){
+    //             cells[pacmanCurrentPosition].classList.remove("food")
+    //             updateScore()
+    //         }
+    //     }
+    // }
     addPacman(pacmanCurrentPosition)
     eatCherry()
     eatGhost()
@@ -247,6 +345,11 @@ function updateScore(){
 }
 function pacmanDie(position) {
     if (pacmanCurrentPosition === position){
+        removePacman(pacmanCurrentPosition)
+        pacmanCurrentPosition = pacmanStartingPosition
+        addPacman(pacmanCurrentPosition)
+        
+        
         updateHealth()
         playDeath()
     }
@@ -302,8 +405,22 @@ function displayGameOver(){
     highscoreUpdate()
     const endScreen = document.querySelector(".endScreen")
     document.removeEventListener("keydown", pacmanHandleMovement)
+    upButton.removeEventListener("click", () => pacmanHandleMovement("up"))
+    downButton.removeEventListener("click", () => pacmanHandleMovement("down"))
+    leftButton.removeEventListener("click", () => pacmanHandleMovement("left"))
+    rightButton.removeEventListener("click", () => pacmanHandleMovement("right"))
     letsMove.forEach(move =>clearInterval(move)) 
     endScreen.style.visibility="visible"
+}
+function playDeath(){
+    let deathAudio = new Audio("https://cdn.freesound.org/previews/266/266163_4284968-lq.mp3")
+    deathAudio.play()
+    deathAudio.volume = 0.35
+}
+function playEat(){
+    let eatAudio = new Audio("https://cdn.freesound.org/previews/341/341695_5858296-lq.mp3")
+    eatAudio.play()
+    eatAudio.volume = 0.05
 }
 // ! EVENTS
 document.addEventListener("keydown", pacmanHandleMovement)
