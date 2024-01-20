@@ -332,7 +332,7 @@ function turnGhostsBlue(){
 }
 function ghostsStartMoving(){
     ghosts.forEach((ghost, idx) => { 
-        letsMove[idx] = setInterval(() => ghostMove(ghost), 200) 
+        letsMove[idx] = setInterval(() => ghostMove(ghost), 100) 
     }) 
 }  
     let score = 0
@@ -372,7 +372,7 @@ function eatCherry() {
 function turnGhostsScared() {
     letsMove.forEach(move =>clearInterval(move)) 
     turnGhostsBlue()
-    setTimeout(ghostsStartMoving, 3000) 
+    setTimeout(ghostsStartMoving, 2500) 
 }
 function leaderBoardUpdate(){
     const leaderBoard = document.querySelector(".leaderBoard")
@@ -398,7 +398,20 @@ function reloadGame() {
 }
 function checkwin(){
     if(score === 155){
-    displayGameOver()
+    createFood()
+    } else if(score === 310){
+    createFood()
+    } else if(score === 465){
+        createFood()
+    } else if(score === 620){
+        createFood()
+    } else if(score === 775){
+        createFood()
+    } else if(score === 930){
+        createFood()
+        createCherry()
+    } else if(score === 1085){
+        createFood()
     }
 }
 function displayGameOver(){
