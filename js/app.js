@@ -332,7 +332,7 @@ function turnGhostsBlue(){
 }
 function ghostsStartMoving(){
     ghosts.forEach((ghost, idx) => { 
-        letsMove[idx] = setInterval(() => ghostMove(ghost), 100) 
+        letsMove[idx] = setInterval(() => ghostMove(ghost), 180) 
     }) 
 }  
     let score = 0
