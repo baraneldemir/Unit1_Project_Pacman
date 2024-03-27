@@ -6,7 +6,7 @@ You can access the game using this link   - https://baraneldemir.github.io/Unit1
 
 
 ## Overview
-As for the first project on General Assembly's Software Engineering Immersive, I was tasked with building a grid-based game using Vanilla JavaScript. Since my childhood I was a huge fan of arcade games but Pac-Man was more special than others. I have tried to stay as true as the original as possible. The player will be able to control the character and run away from ghosts. If caught, Pac-Man will lose one of his three lives. And of course the cherries. While cherries eaten, ghosts will be edible and Pac-Man will not die.
+As for the first project on General Assembly's Software Engineering Immersive, I was tasked with building a grid-based game using Vanilla JavaScript. Since my childhood I was a huge fan of arcade games but Pac-Man was more special than others. I have tried to stay as true to the original as possible. The player will be able to control the character and run away from ghosts. If caught, Pac-Man will lose one of his three lives. And of course the cherries. While cherries are eaten, ghosts will be edible and Pac-Man will not die.
 
 ## Brief
 The brief given was to:
@@ -32,18 +32,18 @@ The brief given was to:
 - ESlint
 
 ## Planning
-First of all, I started the project with planning. I have decided must haves such as the display of the grid, pacman appearance, movement of user, create the map, adding ghosts to the game, creating a ghost movement function and last but not least die and eat functions. After that I have decided on the features that are nice to haves such as cherries and visual enchantments.
+First of all, I started the project with planning. I have decided must haves such as the display of the grid, pacman appearance, movement of user, create the map, adding ghosts to the game, creating a ghost movement function and last but not least die and eat functions. After that I have decided on the features that are nice to have such as cherries and visual enchantments.
 
 ## Process
-<p>At the beginning I created the grid and tried to make the Pac-Man move in the grid. I didn't wanted to add anything else such as adding wall collusion or ghosts until I was sure that i was done with the movement.</p>
+<p>At the beginning I created the grid and tried to make the Pac-Man move in the grid. I didn't want to add anything else such as adding wall collusion or ghosts until I was sure that I was done with the movement.</p>
 
-<p>If I was making a snake game I would choose a similar way to create the map but since Pac-Man maze is quite big, I came to the conclusion that the best approach would be creating the map through an array of numbers. '0' will represent walls, '1' will represent edibles and '2' is empty squares.
+<p>If I was making a snake game I would choose a similar way to create the map but since the Pac-Man maze is quite big, I came to the conclusion that the best approach would be creating the map through an array of numbers. '0' will represent walls, '1' will represent edibles and '2' is empty squares.
 
 Then I added the Pac-Man in and tested that it could move freely across the grid, moving through the tunnel and appearing on the other side and not being able to enter the home of the ghosts. 
 
 To finish the Pac-Man section of the game I added in the dots Pac-Man would be eating to win the game.
 
-After feeling comfortable of moving Pac-Man along the map, it was time to add the ghosts. To create a movement function for the ghost was the part that I spent my time the most on it. I have started with a single ghost. Created a function to move him around randomly to available squares. But then I have realised the ghost was moving back and forth sometimes like it was glitching. To solve this problem I have added an array called previously moved and made ghost not to move the squares that they came from. It worked like a charm. 
+After feeling comfortable moving Pac-Man along the map, it was time to add the ghosts. To create a movement function for the ghost was the part that I spent my time the most on. I have started with a single ghost. Created a function to move him around randomly to available squares. But then I realised the ghost was moving back and forth sometimes like it was glitching. To solve this problem I have added an array called previously moved and made ghosts not move the squares that they came from. It worked like a charm. 
 
 After making sure ghost movement was natural and not glitchy, I have moved on to make it more like a game and created a die function for Pac-Man so that it was playable. This was fairly easy since creating a function where ghost position and Pac-Man was the same die function would occur and one health would be lost.
 </p>
@@ -62,9 +62,9 @@ function pacmanDie(position) {
 }
 ```
 
-Now I have a map, movement of Pac-Man, movement of ghosts, die function and win lose screens. It was a proper playable game. It was time to move on to nice to have section on my planning. Cherries! Firstly i displayed cherries in the map with '8' and when Pac-Man recieves the cherry all the ghosts will stop and become edible. This feature was cruel to me since if players get stucks between ghosts, they had a last option as to eat the cherry and runaway from ghosts.
+Now I have a map, movement of Pac-Man, movement of ghosts, die function and win lose screens. It was a proper playable game. It was time to move on to nice to have section on my planning. Cherries! Firstly I displayed cherries on the map with '8' and when Pac-Man receives the cherry all the ghosts will stop and become edible. This feature was cruel to me since if players get stucks between ghosts, they had a last option as to eat the cherry and run away from ghosts.
 
-After adding other ghosts and increasing the speed a little bit it was a really hard game. At this point I have played the game a lot and playing a game that you have created is an must have feeling.
+After adding other ghosts and increasing the speed a little bit it was a really hard game. At this point I have played the game a lot and playing a game that you have created is a must have feeling.
 
 ## Screenshots
 <p>
@@ -77,7 +77,7 @@ Lost Screen
 </p>
 
 ## Challenges
-<p> The biggest challange of mine in coding of Pac-Man game is the movement of ghosts since they do not move randomly as people may think. I have read a few documentations specifically on ghost movements and interactions. Every ghost has it's unique pathing and movement triggers.  
+<p> The biggest challenge of mine in the coding of the Pac-Man game is the movement of ghosts since they do not move randomly as people may think. I have read a few documentations specifically on ghost movements and interactions. Every ghost has its unique pathing and movement triggers.  
 
 
 ###### Logic for Ghost movement.
@@ -136,7 +136,7 @@ function ghostMove(ghost) {
 ## Wins
 While getting the ghosts to move was both my biggest challenge and my biggest win, I am really proud of the way I have created the map. The grid for Pac-Man is a classic and because I was trying to be as true to the arcade game as possible, getting it right was very important to me. So I have created this array map. And the way the result is displayed is also something that I had to work around because I was using Vanilla JavaScript. In the end I manipulated CSS to achieve the dynamic pop-up I was looking for.
 
-###### The creation of grid. Since its dynamic, it would be fairly easy to create other levels of maps with this technic. 
+###### The creation of grid. Since it's dynamic, it would be fairly easy to create other levels of maps with this technique. 
 ```javascript
 function createGrid(){
     board = [
@@ -184,7 +184,7 @@ function createWalls() {
     })
 }
 ```
-Having a seperate interval function to ghost movements was also something that i was proud of so that i can easily increase the difficulty level of the game. 
+Having a separate interval function to ghost movements was also something that I was proud of so that I can easily increase the difficulty level of the game. 
 ###### Ghost interval
 ```javascript
 function ghostsStartMoving(){
@@ -210,9 +210,9 @@ Another key takeaway for me that translated into a bigger lesson, was the moveme
 If I had more time on this project I would add:
 - Level 2 by generating different and harder maps
 - Different movements and patterns for the ghosts.
-- The background music of original Pac-Man.
+- The background music of the original Pac-Man.
 
-Thank you for checking out my first game! I hope you enjoyed.
+Thank you for checking out my first game! I hope you enjoyed it.
 
 
 
