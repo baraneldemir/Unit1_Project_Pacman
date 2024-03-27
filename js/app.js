@@ -348,8 +348,6 @@ function pacmanDie(position) {
         removePacman(pacmanCurrentPosition)
         pacmanCurrentPosition = pacmanStartingPosition
         addPacman(pacmanCurrentPosition)
-        
-        
         updateHealth()
         playDeath()
     }
