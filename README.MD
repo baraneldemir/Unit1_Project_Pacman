@@ -205,7 +205,7 @@ Also, as it was a solo project, and the first project we ever did, I didn't ask 
 Another key takeaway for me that translated into a bigger lesson, was the movement of the ghosts. This turned out to be much more complex than I had initially thought, I ended up breaking things down a lot and taking it step by step which in the end helped me speed up. Seeing this was a real eye opener. 
 </p>
 
-## Future Features
+## Future Improvements
 
 If I had more time on this project I would add:
 - Level 2 by generating different and harder maps
