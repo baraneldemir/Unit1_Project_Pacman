@@ -72,8 +72,8 @@ Game Screen
 <img src="./assets/screenshots/game.png" alt="game"/>
 </p>
 <p>
-Death
-<img src="./assets/screenshots/winner-page.png" alt="game won or lost announcement"/>
+Lost Screen
+<img src="./assets/screenshots/death.png" alt="game lost"/>
 </p>
 
 ## Challenges
